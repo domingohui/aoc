@@ -18,7 +18,7 @@ shift xs offset = second ++ first
 main :: IO ()
 main = do
   input <- getLine
-  let ints = (map digitToInt input)
+  let ints = map digitToInt input
   let offset = length ints `div` 2
   let shifted = shift ints offset
   print (captcha (zip ints shifted))
