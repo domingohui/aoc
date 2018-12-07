@@ -1,15 +1,11 @@
 import Data.Char
 
 captcha :: [(Int, Int)] -> Int
-captcha xs =
-  let takeIfEqual x y =
-        case x `compare` y of
-          EQ -> x
-          _ -> 0
-  in
-    case xs of
-      (x, y) : rest -> takeIfEqual x y + captcha rest
-      _ -> 0
+captcha xs = foldl takeIfEqual 0 xs
+  where takeIfEqual acc (x, y) =
+          case x `compare` y of
+            EQ -> acc + x
+            _ -> acc
 
 shift :: [Int] -> Int -> [Int]
 shift xs offset = second ++ first
